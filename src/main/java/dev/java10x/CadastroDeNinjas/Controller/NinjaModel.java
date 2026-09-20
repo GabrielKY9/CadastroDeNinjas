@@ -1,4 +1,4 @@
-package dev.java10x.CadastroDeNinjas;
+package dev.java10x.CadastroDeNinjas.Controller;
 
 import jakarta.persistence.*;
 
@@ -13,8 +13,7 @@ public class NinjaModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
-    private String email;
-    private int idade;
+    private List<Missoes> missoes;
 
     public NinjaModel() {
     }
