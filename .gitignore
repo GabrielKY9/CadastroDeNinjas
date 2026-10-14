@@ -35,3 +35,6 @@ build/
 # Arquivos de variáveis de ambiente / segredos
 .env
 *.env
+
+### Dados do Banco de Dados H2 ###
+Data_H2
