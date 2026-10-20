@@ -11,8 +11,8 @@ import lombok.*;
 @Table(name = "tb_cadastro")
 @Data
 /*
-* @Data = @Getter @Setter @EqualsAndHashCode @ToString
-* */
+ * @Data = @Getter @Setter @EqualsAndHashCode @ToString
+ * */
 @NoArgsConstructor
 @AllArgsConstructor
 

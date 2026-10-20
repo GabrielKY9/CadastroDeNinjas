@@ -1,8 +1,10 @@
 package dev.java10x.CadastroDeNinjas.Missoes;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import dev.java10x.CadastroDeNinjas.Ninjas.NinjaModel;
 import jakarta.persistence.*;
 import lombok.*;
+
 import java.util.List;
 
 @Entity
@@ -22,8 +24,7 @@ public class MissoesModel {
     private String dificuldade;
 
     // @OneToMany uma missão para muitos ninjas
-    @OneToMany(mappedBy = "missoes")
+    @OneToMany(mappedBy = "missoes", fetch = FetchType.EAGER)
+    @JsonIgnore
     private List<NinjaModel> ninja;
-
-
 }
