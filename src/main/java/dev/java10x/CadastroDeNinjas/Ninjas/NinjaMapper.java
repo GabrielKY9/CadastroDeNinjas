@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 public class NinjaMapper {
 
     //Criando um método para mapear os campos do Model para o DTO
-    public NinjaModel map(NinjaDTO ninjaDTO){
+    public NinjaModel map(NinjaDTO ninjaDTO) {
         NinjaModel ninjaModel = new NinjaModel();
         ninjaModel.setId(ninjaDTO.getId());
         ninjaModel.setNome(ninjaDTO.getNome());
@@ -20,7 +20,7 @@ public class NinjaMapper {
     }
 
     //Criando um método para mapear os campos do DTO para o Model
-    public NinjaDTO map(NinjaModel ninjaModel){
+    public NinjaDTO map(NinjaModel ninjaModel) {
         NinjaDTO ninjaDTO = new NinjaDTO();
         ninjaDTO.setNome(ninjaModel.getNome());
         ninjaDTO.setIdade(ninjaModel.getIdade());
