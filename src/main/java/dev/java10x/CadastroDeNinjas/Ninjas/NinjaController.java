@@ -21,7 +21,7 @@ public class NinjaController {
 
     //Adicionar ninja (CREATE)
     @PostMapping("/criar")
-    public NinjaDTO criarNinja(@RequestBody NinjaDTO ninja){
+    public NinjaDTO criarNinja(@RequestBody NinjaDTO ninja) {
         return ninjaService.criarNinja(ninja);
     }
 
@@ -33,7 +33,7 @@ public class NinjaController {
 
     // Mostrar ninjas por ID (READ)
     @GetMapping("/listar/{id}")
-    public NinjaDTO listaNinjasPorId(@PathVariable Long id){
+    public NinjaDTO listaNinjasPorId(@PathVariable Long id) {
         return ninjaService.listarNinjasPorId(id);
     }
 
