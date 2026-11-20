@@ -32,7 +32,7 @@ public class NinjaController {
     // Mostrar ninjas Ninjas (READ)
     @GetMapping("/listar")
     public ResponseEntity<List<NinjaDTO>> listarNinjas() {
-        List<NinjaDTO> listarNinjas  = ninjaService.listarNinjas();
+        List<NinjaDTO> listarNinjas = ninjaService.listarNinjas();
         return ResponseEntity.ok(listarNinjas);
     }
 
@@ -40,7 +40,7 @@ public class NinjaController {
     @GetMapping("/listar/{id}")
     public ResponseEntity<?> listaNinjasPorId(@PathVariable Long id) {
         NinjaDTO ninjaDTO = ninjaService.listarNinjasPorId(id);
-        if(ninjaDTO != null){
+        if (ninjaDTO != null) {
             return ResponseEntity.ok(ninjaDTO);
         }
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Id de ninja não encontrado. Digite um Id válido!");

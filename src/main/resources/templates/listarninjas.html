@@ -5,36 +5,90 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" th:href="@{/css/ninjas.css}">
     <title>Tabela de Ninjas</title>
 </head>
-<h1>
-    Lista de ninjas
-</h1>
-<table>
-    <thead>
-        <tr>
-            <th>ImgURL</th>
-            <th>Id</th>
-            <th>Mome</th>
-            <th>Email</th>
-            <th>Idade</th>
-            <th>Rank</th>
-            <th>Missoes</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr  th:each="ninja: ${ninjas}">
-
-            <td> <img th:src="${ninja.imgURL}"> </td>
-            <td th:text="${ninja.id}"> </td>
-            <td th:text="${ninja.nome}"> </td>
-            <td th:text="${ninja.email}"> </td>
-            <td th:text="${ninja.rank}"> </td>
-            <td th:text="${ninja.missoes}"> </td>
-        </tr>
-    </tbody>
-</table>
 <body>
+<div class="container">
 
+    <div class="page-header">
+        <div>
+            <h1>Gerenciamento de Ninjas</h1>
+            <p>Gerencie os ninjas cadastrados no sistema.</p>
+        </div>
+
+        <a th:href="@{/ninjas/ui/cadastrar}" class="btn btn-primary">
+            + Novo Ninja
+        </a>
+    </div>
+
+    <div class="table-container">
+        <table class="ninja-table">
+            <thead>
+            <tr>
+                <th>Foto</th>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>E-mail</th>
+                <th>Idade</th>
+                <th>Rank</th>
+                <th>Missão</th>
+                <th>Ações</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr th:each="ninja : ${ninjas}">
+                <td>
+                    <img th:src="${ninja.imgURL}"
+                         class="ninja-image"
+                         alt="Foto do ninja">
+                </td>
+                <td th:text="${ninja.id}"></td>
+                <td class="ninja-name" th:text="${ninja.nome}"></td>
+                <td th:text="${ninja.email}"></td>
+                <td th:text="${ninja.idade} + ' anos'"></td>
+                <td>
+                    <span class="rank-badge" th:text="${ninja.rank}"></span>
+                </td>
+                <td class="mission-cell">
+                    <span th:if="${ninja.missoes == null}" class="no-mission">
+                        Sem missão atribuída
+                    </span>
+                    <div th:if="${ninja.missoes != null}" class="mission-info">
+                        <strong th:text="${ninja.missoes.nome}"></strong>
+                        <span th:text="'ID: ' + ${ninja.missoes.id}"></span>
+                        <span class="difficulty-badge" th:text="${ninja.missoes.dificuldade}"></span>
+                    </div>
+                </td>
+                <td>
+                    <div class="action-buttons">
+                        <a th:href="@{/ninjas/ui/listar/{id}(id=${ninja.id})}"
+                           class="btn btn-details">
+                            Detalhes
+                        </a>
+                        <a th:href="@{/ninjas/ui/alterarID/{id}(id=${ninja.id})}"
+                           class="btn btn-edit">
+                            Alterar
+                        </a>
+                        <a th:href="@{/ninjas/ui/deletarId/{id}(id=${ninja.id})}"
+                           class="btn btn-delete"
+                           onclick="return confirm('Deseja realmente excluir este ninja?')">
+                            Deletar
+                        </a>
+                    </div>
+                </td>
+            </tr>
+
+            <tr th:if="${#lists.isEmpty(ninjas)}">
+                <td colspan="8" class="empty-state">
+                    Nenhum ninja cadastrado no sistema.
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
 </body>
 </html>

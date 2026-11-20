@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" th:href="@{/css/ninjas.css}">
+    <title>Tabela de Ninjas</title>
+</head>
+<body>
+<div class="container">
+
+    <div class="page-header">
+        <div>
+            <h1>Detalhes do Ninja</h1>
+            <p>Informações completas do ninja e da missão atribuída.</p>
+        </div>
+
+        <a th:href="@{/ninjas/ui/listar}" class="btn btn-secondary">
+            ← Voltar para a lista
+        </a>
+    </div>
+
+    <hr>
+
+    <div class="details-card" th:if="${ninja != null}">
+        <div class="details-header">
+            <img th:src="${ninja.imgURL}"
+                 th:alt="${ninja.nome}"
+                 class="ninja-image">
+
+            <div>
+                <h2 th:text="${ninja.nome}">Nome do Ninja</h2>
+                <p><strong>ID:</strong> <span th:text="${ninja.id}"></span></p>
+                <p><strong>E-mail:</strong> <span th:text="${ninja.email}"></span></p>
+                <p><strong>Idade:</strong> <span th:text="${ninja.idade} + ' anos'"></span></p>
+                <p>
+                    <strong>Rank:</strong>
+                    <span class="rank-badge" th:text="${ninja.rank}"></span>
+                </p>
+            </div>
+        </div>
+
+        <div class="mission-section">
+            <h3>Missão Atual</h3>
+
+            <div th:if="${ninja.missoes == null}" class="no-mission">
+                Sem missão atribuída ao Ninja.
+            </div>
+
+            <div th:if="${ninja.missoes != null}" class="mission-info">
+                <p><strong>ID da Missão:</strong> <span th:text="${ninja.missoes.id}"></span></p>
+                <p><strong>Nome da Missão:</strong> <span th:text="${ninja.missoes.nome}"></span></p>
+                <p>
+                    <strong>Dificuldade:</strong>
+                    <span class="difficulty-badge" th:text="${ninja.missoes.dificuldade}"></span>
+                </p>
+            </div>
+        </div>
+
+        <div class="action-buttons">
+            <a th:href="@{/ninjas/ui/alterarID/{id}(id=${ninja.id})}"
+               class="btn btn-edit">
+                Alterar
+            </a>
+
+            <a th:href="@{/ninjas/ui/deletarId/{id}(id=${ninja.id})}"
+               class="btn btn-delete"
+               onclick="return confirm('Deseja realmente excluir este ninja?')">
+                Deletar
+            </a>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>
